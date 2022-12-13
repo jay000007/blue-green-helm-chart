@@ -10,16 +10,6 @@ $ chmod 700 get_helm.sh
 $ ./get_helm.sh
 ```
 
-* Install Istio
-```
-$ wget https://github.com/istio/istio/releases/download/1.9.3/istio-1.9.3-osx.tar.gz
-$ tar zxvf istio-1.9.3-osx.tar.gz
-$ cd istio-1.9.3
-$ helm install istio-base manifests/charts/base -n istio-system
-$ helm install istiod manifests/charts/istio-control/istio-discovery -n istio-system
-$ helm install istio-ingress manifests/charts/gateways/istio-ingress -n istio-system
-```
-
 * Create new namespace - my-app
 ```
 $ kubectl create namespace my-app
@@ -72,7 +62,7 @@ $ ./moveTraffic.sh blue
 ```
 
 ### Running for automatic blue-green deployment
-* Port forward to the Istio ingress controller
+* Port forwarding:
 ```
 kubectl port-forward deployment/<deployment-name> 8080:8080
 ```
