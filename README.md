@@ -74,7 +74,7 @@ $ ./moveTraffic.sh blue
 ### Running for automatic blue-green deployment
 * Port forward to the Istio ingress controller
 ```
-kubectl port-forward $(kubectl get pods --selector=istio=ingressgateway -n istio-system --no-headers -o custom-columns=NAME:.metadata.name) 8080:8080
+kubectl port-forward deployment/<deployment-name> 8080:8080
 ```
 * Add a record into your `/etc/hosts`
 ```
