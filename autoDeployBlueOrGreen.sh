@@ -16,15 +16,15 @@ fi
 echo "Start to deploy on slot: $newSlot with version: $newAppVersion"
 
 if [ $newSlot == "blue" ]; then
-  kubectl delete deployments/bg-deploy-blue
+  kubectl delete deployments/deploy-test-bg-deploy-blue
   helm upgrade deploy-test . --set blue.enabled=true --set blue.timestamp="$(date '+%Y-%m-%d %H:%M:%S')" --set blue.appVersion=$newAppVersion --reuse-values --debug
-  kubectl rollout status deployments/bg-deploy-blue
+  kubectl rollout status deployments/deploy-test-bg-deploy-blue
   sleep 2
   helm upgrade deploy-test . --set productionSlot=blue --reuse-values --debug
 elif [ $newSlot == "green" ]; then
-  kubectl delete deployments/bg-deploy-green
+  kubectl delete deployments/deploy-test-bg-deploy-green
   helm upgrade deploy-test . --set green.enabled=true --set green.timestamp="$(date '+%Y-%m-%d %H:%M:%S')" --set green.appVersion=$newAppVersion --reuse-values --debug
-  kubectl rollout status deployments/bg-deploy-green
+  kubectl rollout status deployments/deploy-test-bg-deploy-green
   sleep 2
   helm upgrade deploy-test . --set productionSlot=green --reuse-values --debug
 fi
